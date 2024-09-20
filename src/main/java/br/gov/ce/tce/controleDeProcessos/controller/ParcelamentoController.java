@@ -19,12 +19,14 @@ public class ParcelamentoController {
     @Autowired
     private ParcelamentoService parcelamentoService;
 
-    @GetMapping
-    public ResponseEntity<Page<Parcelamento>> getAllParcelas(
+    @GetMapping("/{idProcesso}/parcelas")
+    public ResponseEntity<Page<Parcelamento>> getAllParcelasByProcesso(
+            @PathVariable Long idProcesso,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
 
-        Page<Parcelamento> parcelas = parcelamentoService.findAllParcelas(PageRequest.of(page, size));
+        Page<Parcelamento> parcelas = parcelamentoService
+                .findAllParcelasByProcesso(idProcesso, PageRequest.of(page, size));
 
         return parcelas.hasContent() ? ResponseEntity.ok(parcelas) : ResponseEntity.noContent().build();
     }

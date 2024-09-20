@@ -16,8 +16,8 @@ public class ParcelamentoService {
     private ParcelamentoRepository parcelamentoRepository;
 
     //Encontrando todas as parcelas de um processo especifico com paginacao
-    public Page<Parcelamento> findAllParcelas(Pageable pageable) {
-        return parcelamentoRepository.findAll(pageable);
+    public Page<Parcelamento> findAllParcelasByProcesso(Long idProcesso, Pageable pageable) {
+        return parcelamentoRepository.findAllByProcessoPrincipal_IdProcesso(idProcesso, pageable);
     }
 
     //Editando uma parcela
