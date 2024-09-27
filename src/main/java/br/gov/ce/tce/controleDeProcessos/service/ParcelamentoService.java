@@ -16,12 +16,17 @@ public class ParcelamentoService {
     private ParcelamentoRepository parcelamentoRepository;
 
     //Encontrando todas as parcelas de um processo especifico com paginacao
-    public Page<Parcelamento> findAllParcelasByProcesso(Long idProcesso, Pageable pageable) {
-        return parcelamentoRepository.findAllByProcessoPrincipal_IdProcesso(idProcesso, pageable);
+    public Page<Parcelamento> findAllParcelasByProcessoAndCpf(String idProcesso, String cpf, Pageable pageable) {
+        return parcelamentoRepository.findByProcessoPrincipalAndCpf(idProcesso, cpf, pageable);
     }
 
-    //Editando uma parcela
-    public Parcelamento updateParcela(Parcelamento parcela) {
+    //Encontrando um parcela pela ID
+    public Optional<Parcelamento> findById(Long id) {
+        return parcelamentoRepository.findById(id);
+    }
+
+    //Salvando uma parcela para insercoes ou atualizacoes
+    public Parcelamento saveParcela(Parcelamento parcela) {
         return parcelamentoRepository.saveAndFlush(parcela);
     }
 
@@ -30,8 +35,4 @@ public class ParcelamentoService {
         parcelamentoRepository.deleteById(id);
     }
 
-    //Encontrando uma parcela pela ID
-    /*public Optional<Parcelamento> findParcelaById(Long idProcesso) {
-        return parcelamentoRepository.findById(idProcesso);
-    }*/
 }

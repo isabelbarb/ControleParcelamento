@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ParcelamentoRepository extends JpaRepository<Parcelamento, Long> {
 
-    // Encontrando todas as parcelas associadas a um processo específico
-    Page<Parcelamento> findAllByProcessoPrincipal_IdProcesso(Long idProcesso, Pageable pageable);
+    Page<Parcelamento> findByProcessoPrincipalAndCpf(
+            String idProcesso,
+            String cpf,
+            Pageable pageable
+    );
 }

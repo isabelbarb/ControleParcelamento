@@ -3,6 +3,7 @@ package br.gov.ce.tce.controleDeProcessos.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serial;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Processo implements Serializable {
 
     @Serial
@@ -20,8 +22,10 @@ public class Processo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "id_processo", nullable = false)
-    private Long idProcesso;
+    private String idProcesso;
 
     @Column(nullable = false)
     private String especie;
@@ -29,15 +33,15 @@ public class Processo implements Serializable {
     @Column(name = "ente_federativo", nullable = false)
     private String enteFederativo;
 
-    @Column(nullable = false)
+    @Column(name = "responsável", nullable = false)
     private String responsavel;
 
-    @Column(length = 14, name = "CPF")
-    private Long cpf;
+    @Column(name = "cpf", nullable = false)
+    private String cpf;
 
-    @Column(nullable = false)
+    @Column(name = "tipo", nullable = false)
     private String tipo;
 
-    @Column(scale = 2, nullable = false)
-    private double valor;
+    @Column(name = "valor", nullable = false)
+    private String valor;
 }

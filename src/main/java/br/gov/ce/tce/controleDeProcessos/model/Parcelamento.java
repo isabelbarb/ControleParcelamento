@@ -3,6 +3,7 @@ package br.gov.ce.tce.controleDeProcessos.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serial;
@@ -14,34 +15,39 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Parcelamento implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @ManyToOne
-    @JoinColumn(name = "Processo Principal", nullable = false)
-    private Long processoPrincipal;
-
-    @Column(name = "Parcelas", nullable = false)
-    private Integer numParcela;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Número do Processo", nullable = false)
-    private Long idParcela;
+    private Long id;
 
-    @Column(name = "Valor", scale = 2, nullable = false)
-    private Double valor;
+    @Column(name = "processo_principal", nullable = false)
+    private String processoPrincipal;
 
-    @Column(name="Data", nullable = false)
-    private LocalDate data;
+    @Column(name = "parcelas", nullable = false)
+    private Integer numParcela;
 
-    @Column(name = "Tipo", nullable = false)
+    @Column(name = "numero_do_processo", nullable = false)
+    private String processoParcela;
+
+    @Column(name = "valor", nullable = false)
+    private String valor;
+
+    @Column(name= "data", nullable = false)
+    private String data;
+
+    @Column(name = "tipo", nullable = false)
     private String tipo;
 
-    @Column(name = "Responsável", nullable = false)
+    @Column(name = "responsável", nullable = false)
     private String responsavel;
+
+    @Column(name = "cpf", nullable = false)
+    private String cpf;
 
 
 

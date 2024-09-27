@@ -4,10 +4,10 @@ import br.gov.ce.tce.controleDeProcessos.model.Processo;
 import br.gov.ce.tce.controleDeProcessos.repository.ProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,8 +22,13 @@ public class ProcessoService {
     }
 
     //Encontrando um processo pela ID
-    public Optional<Processo> findProcessoById(Long idProcesso) {
-        return processoRepository.findById(idProcesso);
+    public Optional<Processo> findById(Long id) {
+        return processoRepository.findById(String.valueOf(id));
+    }
+
+    //Encontrando um processo pela IdProcesso
+    public List<Processo> findProcessoByIdProcesso(String idProcesso) {
+        return processoRepository.findByIdProcesso(idProcesso);
     }
 
     //Editando um processo
